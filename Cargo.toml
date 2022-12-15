@@ -9,4 +9,7 @@ edition = "2021"
 members = [".", "api", "bot", "core", "entity", "migration"]
 
 [dependencies]
+tokio = { version = "1.23", features = ["full", "tracing"] }
+
 api = { path = "api" }
+bot = { path = "bot"}

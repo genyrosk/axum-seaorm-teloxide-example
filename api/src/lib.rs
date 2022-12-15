@@ -24,8 +24,7 @@ pub struct AppState {
     conn: DatabaseConnection,
 }
 
-#[tokio::main]
-async fn start() -> anyhow::Result<()> {
+pub async fn start() -> anyhow::Result<()> {
     // env::set_var("RUST_LOG", "debug");
     tracing_subscriber::fmt::init();
 
@@ -69,8 +68,13 @@ async fn start() -> anyhow::Result<()> {
     Ok(())
 }
 
+#[tokio::main]
+async fn start_runtime() -> anyhow::Result<()> {
+    start().await
+}
+
 pub fn main() {
-    let result = start();
+    let result = start_runtime();
 
     if let Some(err) = result.err() {
         println!("Error: {}", err);
